@@ -1,6 +1,7 @@
 import Home, {HomeEvents} from "./views/Home.js";
-import InsertMovie, {InsertMovieEvents} from "./views/AddNewMovie.js";
+// import DisplayMovie, {HomeEvents} from "./views/AddNewMovie.js";
 import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
+import InsertMovie, {InsertMovieEvents} from "./views/AddNewMovie.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 import Login from "./views/Login.js";
@@ -20,23 +21,32 @@ export default function router(URI) {
     const routes = {
         '/': {
             returnView: Home,
-            state: {},
+            state: {
+                movies: 'api/movies'
+            },
             uri: '/',
             title: 'Home',
             viewEvent: HomeEvents
         },
-        '/movies': {
-            returnView: MovieIndex,
+        // '/movies': {
+        //     returnView: DisplayMovie,
+        //     state: {
+        //         movies: '/api/movies'
+        //         },
+        //     uri: '/movies',
+        //     title: 'Movie Selection',
+        //     viewEvent: HomeEvents
+        // },
+        '/add': {
+            returnView: InsertMovie,
             state: {
-                movies: '/api/movies',
-                genre: '/api/genre',
-                director: '/api/director',
-                rating: '/api/rating'
+                movies: '/api/movies/add'
             },
-            uri: '/movies',
-            title: 'All Movies',
-            viewEvent: movieSetup
+            uri: '/add',
+            title: 'Add Movie',
+            viewEvent: InsertMovieEvents
         },
+
         '/logout': {
             returnView: Logout,
             state: {},

@@ -10,7 +10,7 @@ import createView from "./createView.js";
 export default function fetchData(state, request) {
     const promises = [];
     //TODO: this needs to be moved to a prop file or env variable
-    const baseUri = "http://localhost:3306/";
+    const baseUri = "http://localhost:9001/";
 
     console.log("got to fetch data");
     console.log(request);
@@ -22,7 +22,7 @@ export default function fetchData(state, request) {
                     if (res.status === 400 && res.url.includes("oauth/token")) {
                         // console.log(res);
                         console.log("failed to login");
-                        createView("/home");
+                        createView("/api/movies");
                         return;
                     }
 
