@@ -18,7 +18,7 @@ export default async function createView(URI) {
     let route = router(URI);
 
     // Store the title because the loading screen render overwrites it.
-    let currentTitle = APP_TITLE;
+    let currentTitle = document.title;
 
     // if route is invalid, return a 404 page
     if (!route) {
