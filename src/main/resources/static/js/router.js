@@ -1,5 +1,5 @@
 import Home, {HomeEvents} from "./views/Home.js";
-import InsertMovie, {InsertMovieEvents} from "./views/AddNewMovie.js";
+import InsertMovie, {InsertMovieEvents} from "./views/Add New Movie.js";
 import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";

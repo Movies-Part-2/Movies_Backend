@@ -12,6 +12,7 @@ export default function Home(props) {
       <!--
         - Movie of the month
       -->
+    
       <section class="banner">
         <div class="banner-card">
           <img src="../assets/John_Wick.jpeg" class="banner-img" alt="">
@@ -42,7 +43,7 @@ export default function Home(props) {
         </div>
       </section>
 <!--      Title for the movie listing -->
-     <h1><em>Top Box Office</em></h1>
+     <h1><em>Top Box Office Hits</em></h1>
  `;
     let imagePath = [
         "assets/Hulk.jpeg",

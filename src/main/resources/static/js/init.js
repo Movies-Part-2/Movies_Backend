@@ -1,4 +1,3 @@
-
 import createView from './createView.js';
 
 export default function init() {
