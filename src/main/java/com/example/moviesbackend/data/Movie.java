@@ -3,6 +3,8 @@ package com.example.moviesbackend.data;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -21,11 +23,21 @@ public class Movie {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private Long directorID;
+    @OneToMany
+    private Collection<Director> director;
 
-    @Column(nullable = false)
-    private Float genreID;
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            targetEntity = Genre.class)
+    @JoinTable(
+            name="movies_genre",
+            joinColumns = {@JoinColumn(name = "movies_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="genre_id", nullable = false, updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
+    private List<Genre> genreList;
 
     @Column(nullable = false)
     private Long score;

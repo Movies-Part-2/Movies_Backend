@@ -19,8 +19,8 @@ import java.util.Optional;
 public class MoviesController {
 //    private EmailService emailService;
     private MoviesRepository moviesRepository;
-//    private DirectorsRepository directorsRepository;
-//    private GenresRepository genresRepository;
+    private DirectorsRepository directorsRepository;
+    private GenresRepository genresRepository;
 
     @GetMapping("")
     public List<Movie> fetchMovies() {

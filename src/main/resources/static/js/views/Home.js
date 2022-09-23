@@ -15,7 +15,7 @@ export default function Home(props) {
     
       <section class="banner">
         <div class="banner-card">
-          <img src="../assets/John_Wick.jpeg" class="banner-img" alt="">
+<!--          <img src="../assets/John_Wick.jpeg" class="banner-img" alt="">-->
           <div class="card-content">
           <h3> Movie of the month: </h3>
            <hr> 
@@ -90,7 +90,7 @@ export default function Home(props) {
                 </div>
                 <div class="rating">
                   <ion-icon name="star-outline"></ion-icon>
-                  <span>${props.movies[i].rating}</span>
+                  <span>${props.movies.genre.id}</span>
                 </div>
                 <div class="play">
                   <ion-icon name="play-circle-outline"></ion-icon>
@@ -99,8 +99,8 @@ export default function Home(props) {
             </div>
             <div class="card-body">
               <h3 class="card-title"style="color:rgb(138, 0, 252);" >${props.movies[i].title}</h3>
-                <button class="edit-btn" data-id="${props.movies[i].id}">Edit</button>
-                <button class="delete-btn" data-id="${props.movies[i].id}">Delete</button>
+                <button class="edit-btn" data-id="${movies.id}">Edit</button>
+                <button class="delete-btn" data-id="${movies.id}">Delete</button>
               <div class="card-info">
                 
                 
@@ -145,7 +145,7 @@ function deleteMovie() {
         method: "DELETE",
     }
     const dataID = this.getAttribute('data-id')
-    fetch(`https://vanilla-ringed-winterberry.glitch.me/movies/${dataID}`, requestOptions)
+    fetch(`BASE_URI + ${movies.id}`, requestOptions)
         .then(function (response) {
             if (!response.ok) {
                 console.log("error: " + response.status);
@@ -203,7 +203,7 @@ function editMovie(props) {
         body: JSON.stringify({title: newMovie})
     }
     const dataID = this.getAttribute('data-id');
-    fetch(`https://vanilla-ringed-winterberry.glitch.me/movies/${dataID}`, requestOptions)
+    fetch(`/api/movies/${movies.id}`, requestOptions)
         .then(function (response) {
             if (!response.ok) {
                 console.log("error: " + response.status);

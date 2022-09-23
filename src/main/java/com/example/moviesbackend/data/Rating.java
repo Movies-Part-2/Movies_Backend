@@ -22,17 +22,4 @@ public class Rating {
     @Column(nullable = false)
     private String rating_category;
 
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
-            targetEntity = Rating.class)
-    @JoinTable(
-            name="movies_rating",
-            joinColumns = {@JoinColumn(name = "rating_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="movies_id", nullable = false, updatable = false)},
-            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
-            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
-    )
-    @JsonIgnoreProperties("movies")
-    private Collection<Movie> movies;
 }
