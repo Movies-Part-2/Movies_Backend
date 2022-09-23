@@ -20,6 +20,9 @@ public class Rating {
     private Long id;
 
     @Column(nullable = false)
-    private String rating_category;
+    private String rating;
 
+    @OneToMany(mappedBy = "rating")
+    private Collection<Movie> movies;
 }
+

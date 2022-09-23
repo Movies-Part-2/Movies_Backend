@@ -45,8 +45,8 @@ public class Movie {
     @Column(nullable = false)
     private String plot;
 
-    @Column(nullable = false)
-    private Integer ratingID;
+    @ManyToOne
+    private Rating rating;
 
     @Column(nullable = false)
     private String poster;
