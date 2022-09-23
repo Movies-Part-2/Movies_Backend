@@ -1,5 +1,7 @@
 package com.example.moviesbackend.controllers;
 
+import com.example.moviesbackend.repositories.DirectorsRepository;
+import com.example.moviesbackend.repositories.GenresRepository;
 import com.example.moviesbackend.repositories.MoviesRepository;
 import com.example.moviesbackend.misc.FieldHelper;
 import com.example.moviesbackend.data.Movie;
@@ -15,7 +17,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/api/movies", produces = "application/json")
 public class MoviesController {
+//    private EmailService emailService;
     private MoviesRepository moviesRepository;
+//    private DirectorsRepository directorsRepository;
+//    private GenresRepository genresRepository;
+
     @GetMapping("")
     public List<Movie> fetchMovies() {
         return moviesRepository.findAll();

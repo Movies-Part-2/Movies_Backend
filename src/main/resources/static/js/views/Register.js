@@ -1,7 +1,7 @@
 import createView from "../createView.js"
 import {getHeaders, isLoggedIn} from "../auth.js";
 
-const BASE_URI = `${BACKEND_HOST}/api/users/create`;
+const BASE_URI = `/api/movies`;
 
 export default function Register(props) {
     // language=HTML

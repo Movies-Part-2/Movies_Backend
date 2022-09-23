@@ -1,6 +1,6 @@
 import createView from "../createView.js";
 
-const BASE_URI = `${BACKEND_HOST}/api/users`;
+const BASE_URI = `/api/movies`;
 
 export default function UserIndex(props) {
     console.log(props);
