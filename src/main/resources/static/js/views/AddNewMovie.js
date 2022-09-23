@@ -51,7 +51,7 @@ function insertMovie() {
         },
         body: JSON.stringify(newMovie)
     }
-    fetch("https://vanilla-ringed-winterberry.glitch.me/movies", requestOptions)
+    fetch("/api/movies", requestOptions)
         .then(function(response) {
             if(!response.ok) {
                 console.log("insert movie error: " + response.status);

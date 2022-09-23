@@ -155,39 +155,6 @@ function deleteMovie() {
             }
         });
 }
-// let editBtn = document.getElementsByClassName('edit-btn')
-// let editBtn = document.querySelectorAll('.edit-btn')
-// console.log(editBtn);
-// console.log(editBtn.length);
-// for (let i = 0; i < editBtn.length; i++) {
-//     console.log([i]);
-//     editBtn[i].addEventListener("click", function () {
-//         console.log("asd")
-//
-//         let newMovie = prompt("enter movie")
-//
-//         let editMovies = {
-//             method: "PATCH",
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({title: newMovie})
-//         }
-//
-//         let dataID = props.movies[i].id;
-//
-//         fetch(`https://vanilla-ringed-winterberry.glitch.me/movies/${dataID}`, editMovies)
-//             .then(function (response) {
-//                 if (!response.ok) {
-//                     console.log("movie added error: " + response.status);
-//                 } else {
-//                     console.log("movie updated");
-//                     createView('/');
-//                 }
-//             });
-//
-//     })
-// }
 
 
 function editMovie(props) {

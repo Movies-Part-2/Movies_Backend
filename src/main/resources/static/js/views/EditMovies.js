@@ -54,7 +54,7 @@ function editMovie() {
         body: JSON.stringify(movieE)
     }
     const dataID = this.getAttribute('data-id')
-    fetch(`https://vanilla-ringed-winterberry.glitch.me/movies/${dataID}`, requestOptions)
+    fetch(`/api/movies/${dataID}`, requestOptions)
         .then(function(response) {
             if(!response.ok) {
                 console.log("edit movie error: " + response.status);
