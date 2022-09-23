@@ -48,7 +48,7 @@ public class GenreController {
         if(originalGenre.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Genre id " + id + " not found");
         }
-        updatedGenre.setGenreID(id);
+        updatedGenre.setId(id);
         BeanUtils.copyProperties(updatedGenre, originalGenre.get(), FieldHelper.getNullPropertyNames(updatedGenre));
         genresRepository.save(originalGenre.get());
     }

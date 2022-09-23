@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long genreID;
+    private Long id;
 
     @Column(nullable = false)
     private String genre_category;

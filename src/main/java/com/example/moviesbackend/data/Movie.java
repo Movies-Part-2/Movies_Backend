@@ -23,8 +23,8 @@ public class Movie {
     @Column(nullable = false)
     private String title;
 
-    @OneToMany
-    private Collection<Director> director;
+    @ManyToOne
+    private Director director;
 
     @ManyToMany(
             fetch = FetchType.LAZY,

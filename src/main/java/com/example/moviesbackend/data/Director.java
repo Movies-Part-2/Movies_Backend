@@ -15,15 +15,14 @@ import java.util.Collection;
 public class Director {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long directorID;
+    private Long id;
 
-//    @Column(nullable = false)
-//    private String first_name;
-//
-//    @Column(nullable = false)
-//    private String last_name;
+    @Column(nullable = false)
+    private String first_name;
 
-    @OneToMany(mappedBy = "title")
-    @JsonIgnoreProperties("author")
+    @Column(nullable = false)
+    private String last_name;
+
+    @OneToMany(mappedBy = "director")
     private Collection<Movie> movies;
 }

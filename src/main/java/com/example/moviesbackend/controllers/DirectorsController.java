@@ -48,7 +48,7 @@ public class DirectorsController {
         if(originalDirector.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "director id " + id + " not found");
         }
-        updatedDirector.setDirectorID(id);
+        updatedDirector.setId(id);
         BeanUtils.copyProperties(updatedDirector, originalDirector.get(), FieldHelper.getNullPropertyNames(updatedDirector));
         directorsRepository.save(originalDirector.get());
     }
