@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>val</groupId>
-    <artifactId>venus-rest-blog</artifactId>
+    <artifactId>movies-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>venus-rest-blog</name>
-    <description>venus-rest-blog</description>
+    <name>movies-backend</name>
+    <description>movies-backend</description>
     <properties>
         <java.version>18</java.version>
     </properties>

@@ -8,12 +8,10 @@ import {getNotificationElement} from "./messaging.js";
  */
 export default function render(props, route) {
     const app = document.querySelector('#app');
-    const title = `${APP_TITLE} - ${route.title}`;
+    const title = `Movie Backend - ${route.title}`;
     document.title = title;
     //language=html
-    app.innerHTML = `${Navbar(null)}
-        ${getNotificationElement()} 
-        ${route.returnView(props)}`;
+    app.innerHTML = `${Navbar(null)} ${route.returnView(props)}`;
     if (route.viewEvent){
         route.viewEvent();
     }

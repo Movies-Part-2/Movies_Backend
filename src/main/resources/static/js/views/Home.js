@@ -2,7 +2,7 @@ import {showNotification} from "../messaging.js";
 import {getUser} from "../auth.js";
 import createView from "../createView.js";
 
-const BASE_URI = `${BACKEND_HOST}/api/s3/download`;
+const BASE_URI = `/api/movies`;
 
 export default function Home(props) {
     console.log(props);
@@ -45,28 +45,28 @@ export default function Home(props) {
 <!--      Title for the movie listing -->
      <h1><em>Top Box Office Hits</em></h1>
  `;
-    let imagePath = [
-        "assets/Hulk.jpeg",
-        "assets/Spiderman.jpeg",
-        "assets/Pulp_Fiction.jpeg",
-        "assets/BruceLee.jpeg",
-        "assets/The_Dark_Knight.jpeg",
-        "assets/GodFarther.jpeg",
-        "assets/StarWars.jpeg",
-        "assets/ForrestGump.jpeg",
-        "assets/Titanic.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-        "assets/ComingSoon.jpeg",
-
-
-
-    ]
+    // let imagePath = [
+    //     "assets/Hulk.jpeg",
+    //     "assets/Spiderman.jpeg",
+    //     "assets/Pulp_Fiction.jpeg",
+    //     "assets/BruceLee.jpeg",
+    //     "assets/The_Dark_Knight.jpeg",
+    //     "assets/GodFarther.jpeg",
+    //     "assets/StarWars.jpeg",
+    //     "assets/ForrestGump.jpeg",
+    //     "assets/Titanic.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //     "assets/ComingSoon.jpeg",
+    //
+    //
+    //
+    // ]
 
     html += `
 <div class="container">
@@ -83,7 +83,7 @@ export default function Home(props) {
         
           <div class="movie-card col-3">
             <div class="card-head">
-              <img src="${imagePath[i]}" width="1px" height="em" class="card-img">
+<!--              <img src="${imagePath[i]}" width="1px" height="em" class="card-img">-->
               <div class="card-overlay">
                 <div class="bookmark">
                   <ion-icon name="bookmark-outline"></ion-icon>

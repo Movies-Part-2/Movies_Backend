@@ -1,5 +1,5 @@
 import Home, {HomeEvents} from "./views/Home.js";
-import InsertMovie, {InsertMovieEvents} from "./views/Add New Movie.js";
+import InsertMovie, {InsertMovieEvents} from "./views/AddNewMovie.js";
 import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
@@ -20,45 +20,22 @@ export default function router(URI) {
     const routes = {
         '/': {
             returnView: Home,
-            state: {
-                movies: {
-                    url: "https://vanilla-ringed-winterberry.glitch.me/movies",
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }
-            },
+            state: {},
             uri: '/',
             title: 'Home',
             viewEvent: HomeEvents
         },
         '/movies': {
-            returnView: InsertMovie,
+            returnView: MovieIndex,
             state: {
-                movies: {
-                    url: "https://vanilla-ringed-winterberry.glitch.me/movies",
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }
+                movies: '/api/movies',
+                genre: '/api/genre',
+                director: '/api/director',
+                rating: '/api/rating'
             },
-            uri: '/insert-movie',
-            title: 'Insert Movie',
-            viewEvent: InsertMovieEvents
-        },
-        '/editMovies': {
-            returnView: EditMovie,
-            state: {
-                movies: {
-                    url: "https://vanilla-ringed-winterberry.glitch.me/movies",
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }
-            },
-            uri: '/edit-movie',
-            title: 'Edit Movie',
-            viewEvent: EditMovieEvents
+            uri: '/movies',
+            title: 'All Movies',
+            viewEvent: movieSetup
         },
         '/logout': {
             returnView: Logout,
