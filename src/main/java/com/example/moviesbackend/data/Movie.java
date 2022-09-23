@@ -40,7 +40,7 @@ public class Movie {
     private List<Genre> genreList;
 
     @Column(nullable = false)
-    private Long score;
+    private Float score;
 
     @Column(nullable = false)
     private String plot;
