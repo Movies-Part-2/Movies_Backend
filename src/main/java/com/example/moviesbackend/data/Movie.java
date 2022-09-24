@@ -1,6 +1,7 @@
 package com.example.moviesbackend.data;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
@@ -37,6 +38,7 @@ public class Movie {
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
+//    @JsonIgnoreProperties("movies")
     private List<Genre> genreList;
 
     @Column(nullable = false)

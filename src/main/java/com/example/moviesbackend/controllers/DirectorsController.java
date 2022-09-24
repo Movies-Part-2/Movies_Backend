@@ -23,10 +23,10 @@ public class DirectorsController {
         return directorsRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Optional<Director> fetchDirectorById(@PathVariable long id) {
+    public Optional<Director> fetchDirectorsById(@PathVariable long id) {
         Optional<Director> optionalDirector = directorsRepository.findById(id);
         if(optionalDirector.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "director id " + id + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director id " + id + " not found");
         }
         return optionalDirector;
     }
@@ -38,7 +38,7 @@ public class DirectorsController {
     public void deleteDirectorById(@PathVariable long id) {
         Optional<Director> optionalDirector = directorsRepository.findById(id);
         if(optionalDirector.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "director id " + id + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director id " + id + " not found");
         }
         directorsRepository.deleteById(id);
     }
@@ -46,7 +46,7 @@ public class DirectorsController {
     public void updateDirectorById(@RequestBody Director updatedDirector, @PathVariable long id) {
         Optional<Director> originalDirector = directorsRepository.findById(id);
         if(originalDirector.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "director id " + id + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Director id " + id + " not found");
         }
         updatedDirector.setId(id);
         BeanUtils.copyProperties(updatedDirector, originalDirector.get(), FieldHelper.getNullPropertyNames(updatedDirector));

@@ -51,14 +51,24 @@ public class MoviesController {
         }
         moviesRepository.deleteById(id);
     }
+
     @PutMapping("/{id}")
     public void updateMovieById(@RequestBody Movie updatedMovie, @PathVariable long id) {
-        Optional<Movie> originalMovie = moviesRepository.findById(id);
-        if(originalMovie.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie id " + id + " not found");
+            Optional<Movie> originalMovie = moviesRepository.findById(id);
+            if(originalMovie.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie id " + id + " not found");
+            }
+            updatedMovie.setId(id);
+            BeanUtils.copyProperties(updatedMovie, originalMovie.get(), FieldHelper.getNullPropertyNames(updatedMovie));
+            moviesRepository.save(originalMovie.get());
         }
-        updatedMovie.setId(id);
-        BeanUtils.copyProperties(updatedMovie, originalMovie.get(), FieldHelper.getNullPropertyNames(updatedMovie));
-        moviesRepository.save(originalMovie.get());
-    }
+        //        Optional<Movie> optionalMovie = moviesRepository.findById(id);
+//        if(optionalMovie.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie id " + id + " not found");
+//        }
+//        Movie originalMovie = optionalMovie.get();
+//        updatedMovie.setId(id);
+//        BeanUtils.copyProperties(updatedMovie, originalMovie, FieldHelper.getNullPropertyNames(updatedMovie));
+//        moviesRepository.save(originalMovie);
+//    }
 }

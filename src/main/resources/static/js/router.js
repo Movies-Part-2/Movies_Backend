@@ -21,11 +21,21 @@ export default function router(URI) {
     const routes = {
         '/': {
             returnView: Home,
-            state: {
-                movies: 'api/movies'
-            },
+            state: {},
+            // state: {
+            //     movies: 'api/movies'
+            // },
             uri: '/',
             title: 'Home',
+            viewEvent: HomeEvents
+        },
+        '/movies': {
+            returnView: Home,
+            state: {
+                movies: '/api/movies'
+            },
+            uri: '/movies',
+            title: 'All Movies',
             viewEvent: HomeEvents
         },
         // '/movies': {

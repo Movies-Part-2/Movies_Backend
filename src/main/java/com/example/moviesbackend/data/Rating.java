@@ -23,6 +23,7 @@ public class Rating {
     private String rating;
 
     @OneToMany(mappedBy = "rating")
+//    @JsonIgnoreProperties("rating")
     private Collection<Movie> movies;
 }
 
