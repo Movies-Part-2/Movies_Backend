@@ -26,10 +26,11 @@ public class Genre {
             targetEntity = Movie.class)
     @JoinTable(
             name="movies_genre",
-            joinColumns = {@JoinColumn(name = "category_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="post_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "genre_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="movies_id", nullable = false, updatable = false)},
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
-    @JsonIgnoreProperties("categories")
-    private Collection<Movie> movies;}
+    @JsonIgnoreProperties("genre")
+    private Collection<Movie> movies;
+}
