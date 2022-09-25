@@ -6,7 +6,8 @@ const BASE_URI = `/api/movies`;
 
 export default function Home(props) {
     // console.log(props);
-
+let movies = props.movies;
+console.log(movies);
 
     let html = `
    <div class="container">
@@ -74,7 +75,7 @@ export default function Home(props) {
 <div class="row">
 `;
     //add a table row for each table element
-    for (let i = 0; i < props.movies.length; i++) {
+    for (let i = 0; i < movies?.length; i++) {
 
         html += `
         <!--
@@ -128,10 +129,10 @@ export default function Home(props) {
 
 
     export function HomeEvents() {
-        setupDeleteHandlers();
+        // setupDeleteHandlers();
         getMovieId();
-        editMovie();
-        deleteMovie();
+        // editMovie();
+        // deleteMovie();
     }
 
 
@@ -193,15 +194,8 @@ export default function Home(props) {
         }
 
         const dataID = this.getAttribute("data-id");
-        fetch(`/api/movies/${movies.id}`, requestOptions)
-            .then(function (response) {
-                if (!response.ok) {
-                    console.log("error: " + response.status);
-                } else {
-                    console.log("add ok");
-                    createView("/");
-                }
-            });
+        fetch(`/api/movies/${movies?.id}`, requestOptions)
+            .then(response => response.json()).then(data => console.log(data));
     }
 
 

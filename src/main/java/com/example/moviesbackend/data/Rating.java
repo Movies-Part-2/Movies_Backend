@@ -22,8 +22,7 @@ public class Rating {
     @Column(nullable = false)
     private String rating;
 
-    @OneToMany(mappedBy = "rating")
-//    @JsonIgnoreProperties("rating")
-    private Collection<Movie> movies;
+    @OneToOne(mappedBy = "rating")
+    private Movie movies;
 }
 

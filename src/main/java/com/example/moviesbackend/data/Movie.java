@@ -23,9 +23,19 @@ public class Movie {
 
     @Column(nullable = false)
     private String title;
-
-    @ManyToOne
-    private Director director;
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            targetEntity = Director.class)
+    @JoinTable(
+            name="movies_directors",
+            joinColumns = {@JoinColumn(name = "movies_id", nullable = false, updatable = false, referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="director_id", nullable = false, updatable = false, referencedColumnName = "id")},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
+    @JsonIgnoreProperties("movies")
+    private List<Director> director;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -33,12 +43,12 @@ public class Movie {
             targetEntity = Genre.class)
     @JoinTable(
             name="movies_genre",
-            joinColumns = {@JoinColumn(name = "movies_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="genre_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "movies_id", nullable = false, updatable = false, referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="genre_id", nullable = false, updatable = false, referencedColumnName = "id")},
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
-//    @JsonIgnoreProperties("movies")
+    @JsonIgnoreProperties("movies")
     private List<Genre> genreList;
 
     @Column(nullable = false)
@@ -47,7 +57,9 @@ public class Movie {
     @Column(nullable = false)
     private String plot;
 
-    @ManyToOne
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    @JsonIgnoreProperties("movies")
     private Rating rating;
 
     @Column(nullable = false)

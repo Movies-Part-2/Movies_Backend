@@ -23,7 +23,7 @@ public class Director {
     @Column(nullable = false)
     private String last_name;
 
-    @OneToMany(mappedBy = "director")
+    @ManyToMany(mappedBy = "director")
 //    @JsonIgnoreProperties("director")
     private Collection<Movie> movies;
 }
