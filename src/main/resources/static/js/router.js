@@ -1,6 +1,5 @@
 import Home, {HomeEvents} from "./views/Home.js";
 // import Categories , {CategoryEvents} from "./views/Categories.js";
-// import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
 import InsertMovie, {InsertMovieEvents} from "./views/AddNewMovie.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
@@ -10,6 +9,7 @@ import Register from "./views/Register.js"
 import {RegisterEvent} from "./views/Register.js";
 import UserIndex, {UserEvents} from "./views/User.js";
 import Logout, {LogoutEvents} from "./views/Logout.js";
+import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
 
 
 /**
@@ -40,17 +40,17 @@ export default function router(URI) {
         //     title: 'List of Directors',
         //     viewEvent: HomeEvents
         // },
-        // '/category': {
-        //     returnView: Categories ,
-        //     state: {
-        //         movies: {
-        //             url: "localhost:9001/api/genre"
-        //         }
-        //     },
-            // uri: '/categories',
-            // title: 'Search by Category',
-            // viewEvent: CategoryEvents
-        // },
+        '/edit': {
+            returnView: EditMovie ,
+            state: {
+                movies: {
+                    url: "localhost:9001/api/edit"
+                }
+            },
+            uri: '/edit',
+            title: 'Edit Movies',
+            viewEvent: EditMovieEvents
+        },
         '/add': {
             returnView: InsertMovie,
             state: {

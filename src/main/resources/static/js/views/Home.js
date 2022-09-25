@@ -1,4 +1,5 @@
 import {showNotification} from "../messaging.js";
+import {editMovie} from "./EditMovies.js";
 import {getHeaders, getUser} from "../auth.js";
 import createView from "../createView.js";
 
@@ -24,20 +25,9 @@ export default function Home(props) {
                 <div class="card-image">
                     <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
                 </div>
-                <div class="card-overlay">
-                      <div class="bookmark">
-                         <ion-icon name="bookmark-outline"></ion-icon>
-                      </div>
-                      <div class="rating">
-                         <ion-icon name="star-outline"></ion-icon>
-<!--                         <span>${movies[i].genreList.id}</span>-->
-                      </div>
-                      <div class="play">
-                         <ion-icon name="play-circle-outline"></ion-icon>
-                      </div>         
-                </div>
+               
                 <div class="card-body">
-                    <h3 class="card-title"style="color:rgb(138, 0, 252);">${movies[i].title}</h3>
+                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</h3>
                     <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
                     <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
                 </div> 
@@ -51,17 +41,18 @@ export default function Home(props) {
 
 
 export function HomeEvents() {
-    // setupDeleteHandlers();
     // getMovieId();
-    // editMovie();
-    // deleteMovie();
+    deleteMovie();
+
+    // const editButton = document.querySelectorAll(".edit-btn");
+    // for (let i = 0; i < editButton.length; i++) {
+    //     editButton[i].addEventListener("click", editMovie);
+    // }
 }
-
-
 // function  getMovieId() {
 //     let request = {
 //         method: "GET",
-//         headers: {"Content-Type": "application/json"},
+//         headers: getHeaders(),
 //     }
 //     fetch("http://localhost:9001/api/movies/", request)
 //         .then(response => response.json()).then(data => console.log(data));
@@ -77,39 +68,27 @@ export function HomeEvents() {
 //             });
 //         }
 //     }
-    //Function that does the deleting work separate from setupDeleteHandler:
-// function deleteMovie() {
-//     const request = {
-//         method: "DELETE",
-//         headers: getHeaders(),
-//     }
-//     const dataID = this.getAttribute("data-id");
-//     const url = POST_API_BASE_URL + `/${movies.id}`;
-//     fetch(url, request)
-//         .then(function (response) {
-//             if (response.status !== 200) {
-//                 console.log("error: fetch returned bad status code " + response.status);
-//                 console.log(response.statusText);
-//             } else {
-//                 console.log("Movie removed successfully!");
-//                 createView("/movies");
-//             }
-//         });
-// }
-// //Edit movie functionality: Original movie project worked, refactor with some of rest-blog example if needed:
-// function editMovie(props) {
-//     let newMovie = prompt("Enter New Movie Name")
-//     console.log(newMovie)
-//     // let newMovie = ""
-//     // newMovie = userInput
-//     const requestOptions = {
-//         method: "PUT",
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({title: newMovie})
-//     }
-//     const dataID = this.getAttribute("data-id");
-//     fetch(`/api/movies/${movies?.id}`, requestOptions)
-//         .then(response => response.json()).then(data => console.log(data));
-//     }
+    // Function that does the deleting work separate from setupDeleteHandler:
+function deleteMovie() {
+    let deleteBtn = document.querySelectorAll('.delete-btn');
+    for (let i = 0; i < deleteBtn.length; i++) {
+        deleteBtn[i].addEventListener('click', (event) => {
+            console.log("clicked");
+            console.log(deleteBtn[i].getAttribute("data-id"));
+        })}}
+function deleteMovie2() {
+    let deleteBtn = document.querySelectorAll('.delete-btn');
+    for (let i = 0; i < deleteBtn.length; i++) {
+        deleteBtn[i].addEventListener('click', (event) => {
+            console.log("clicked");
+            console.log(deleteBtn[i].getAttribute("data-id"));
+            const request = {
+                method: "DELETE",
+                headers: getHeaders(),
+            }
+            const url = POST_API_BASE_URL + `/${deleteBtn[i].getAttribute("data-id")}`;
+            fetch(url, request).then(response => response.json()).then(data => {
+                location.reload();
+                // createView("/movies");
+            })
+        })}}

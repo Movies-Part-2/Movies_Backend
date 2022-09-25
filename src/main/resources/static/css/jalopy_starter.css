@@ -9,7 +9,6 @@ body {
     font-family: Zaptron-Regular, serif;
     position: relative;
 }
-
 h1{
     position: relative;
     text-align: center;
@@ -43,7 +42,7 @@ footer {
 /*-----------------------*/
 /*--------ADD New Movie  CSS-----------*/
 /*-----------------------*/
-label, input,button {
+label, input, button {
     max-width: 45%;
 }
 

@@ -1,4 +1,5 @@
 import createView from "../createView.js"
+import {HomeEvents} from "./Home.js";
 import {showNotification} from "../messaging.js";
 
 
@@ -22,9 +23,10 @@ export default function EditMovie(props) {
 export function EditMovieEvents() {
     const editButton = document.querySelector("#edit-btn");
     editButton.addEventListener("click", editMovie);
+    editMovie();
 }
 
-function editMovie() {
+export function editMovie() {
     // 1. validate the data (movie and rating)
     const movieI = document.querySelector("#movieI");
     const movieT = movieI.value.trim();
