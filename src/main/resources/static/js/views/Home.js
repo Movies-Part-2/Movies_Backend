@@ -128,7 +128,6 @@ export default function Home(props) {
 
 
     export function HomeEvents() {
-        addMovieHandler();
         setupDeleteHandlers();
         getMovieId();
         editMovie();
@@ -144,32 +143,6 @@ export default function Home(props) {
         fetch("http://localhost:9001/api/movies/", request)
             .then(response => response.json()).then(data => console.log(data));
     }
-
-// function addMovieHandler(){
-//     const addButton = document.querySelector("#addPost")
-//     addButton.addEventListener("click", function (event) {
-//         const titleField =  document.querySelector("#title");
-//         const contentField = document.querySelector("#content");
-//         if((titleField.value === "") || (contentField.value === "")) {
-//             console.log("needs more data");
-//         }
-//         else {
-//             let newPost = {
-//                 title: titleField.value,
-//                 content: contentField.value,
-//             }
-//             console.log(newPost);
-//             let request = {
-//                 method: "POST",
-//                 headers: {"Content-Type": "application/json"},
-//                 body: JSON.stringify(newPost)
-//             }
-//             fetch("http://localhost:8080/api/posts", request)
-//                 .then(response => {
-//                     console.log(response.status);
-//                     createView("/posts");
-//                 })
-//         }})}
 
 
     function setupDeleteHandlers() {
