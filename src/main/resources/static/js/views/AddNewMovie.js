@@ -19,21 +19,25 @@ export default function InsertMovie(props) {
 export function InsertMovieEvents() {
     const addButton = document.querySelector("#insert-btn");
     addButton.addEventListener("click", insertMovie);
+
 }
 
-function insertMovie() {
-    // 1. validate the data (movie and director)
-    const movieInput = document.querySelector("#movieInput");
-    const movieText = movieInput.value.trim();
 
-    const ratingInput = document.querySelector("#ratingInput");
-    let ratingText = ratingInput.value.trim();
+function insertMovie(){
 
-    if(movieText.length < 1) {
-        showNotification("Please fill in Movie", "danger");
+        const movieInput = document.querySelector("#movieInput");
+        const movieText = movieInput.value.trim();
+
+        const ratingInput = document.querySelector("#ratingInput");
+        let ratingText = ratingInput.value.trim();
+
+    //conditional:
+    if (movieText.length < 1) {
+        showNotification("Please Enter a Movie!", "danger");
         return;
     }
-    if(ratingText.length < 1) {
+
+    if (ratingText.length < 1) {
         ratingText = "Enter Rating";
     }
 
@@ -51,14 +55,17 @@ function insertMovie() {
         },
         body: JSON.stringify(newMovie)
     }
-    fetch("/api/movies", requestOptions)
-        .then(function(response) {
-            if(!response.ok) {
-                console.log("insert movie error: " + response.status);
+    fetch("http://localhost:9001/api/add", requestOptions)
+        .then(function (response) {
+            if (!response.ok) {
+                console.log("Add movie error: " + response.status);
             } else {
-                console.log("insert movie ok");
+                console.log("Movie Added Sucessfully!");
                 createView("/");
             }
         });
-
 }
+
+
+
+
