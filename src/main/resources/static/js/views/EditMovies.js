@@ -7,7 +7,7 @@ export default function EditMovie(props) {
     return `
         <form class="container">
             <h1>Edit Movie</h1>
-            <form>
+            <form class="form-styling">
                 <label for="movieInput" class="form-label">Movie</label>
                 <input class="form-control" list="datalistOptions" id="movieI" placeholder="Enter Movie">
                 <label for="ratingInput" class="form-label">Rating</label>

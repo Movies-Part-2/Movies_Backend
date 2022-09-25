@@ -3,7 +3,7 @@
 const POST_API_BASE_URL = "http://localhost:9001";
 const USER_API_BASE_URL = "http://localhost:9001/api/users";
 const FRONTEND_VERSION = 0.0001;
-const APP_TITLE = "Jalopy Starter";
+const APP_TITLE = "Movies-Backend";
 const SKIP_STALE_TOKEN_CHECK = true;
-// const BACKEND_HOST = "";
+const BACKEND_HOST = "";
 //

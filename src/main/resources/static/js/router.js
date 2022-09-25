@@ -1,6 +1,6 @@
 import Home, {HomeEvents} from "./views/Home.js";
-// import DisplayMovie, {HomeEvents} from "./views/AddNewMovie.js";
-import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
+// import Categories , {CategoryEvents} from "./views/Categories.js";
+// import EditMovie, {EditMovieEvents} from "./views/EditMovies.js";
 import InsertMovie, {InsertMovieEvents} from "./views/AddNewMovie.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
@@ -21,29 +21,36 @@ export default function router(URI) {
     const routes = {
         '/': {
             returnView: Home,
-            state: {},
+            state: {
+                movies: {
+                    url: "http://localhost:9001/api/movies"
+                }
+
+            },
             uri: '/',
             title: 'Home',
             viewEvent: HomeEvents
         },
-        '/movies': {
-            returnView: Home,
-            state: {
-                movies: '/api/movies'
-            },
-            uri: '/movies',
-            title: 'All Movies',
-            viewEvent: HomeEvents
-        },
-        '/directors': {
-            returnView: Home ,
-            state: {
-                movies: '/api/directors'
-                },
-            uri: '/directors',
-            title: 'List of Directors',
-            viewEvent: HomeEvents
-        },
+        // '/directors': {
+        //     returnView: Home ,
+        //     state: {
+        //         movies: '/api/directors'
+        //         },
+        //     uri: '/directors',
+        //     title: 'List of Directors',
+        //     viewEvent: HomeEvents
+        // },
+        // '/category': {
+        //     returnView: Categories ,
+        //     state: {
+        //         movies: {
+        //             url: "localhost:9001/api/genre"
+        //         }
+        //     },
+            // uri: '/categories',
+            // title: 'Search by Category',
+            // viewEvent: CategoryEvents
+        // },
         '/add': {
             returnView: InsertMovie,
             state: {

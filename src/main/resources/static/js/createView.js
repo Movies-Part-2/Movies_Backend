@@ -11,10 +11,12 @@ import {getHeaders, removeStaleTokens} from "./auth.js";
 export default async function createView(URI) {
     // createView must wait for stale token removal before finishing view creation
     await removeStaleTokens();
+
+
     let route = router(URI);
 
     // Store the title because the loading screen render overwrites it.
-    let currentTitle = document.title;
+    let currentTitle = APP_TITLE;
 
 
     // if route is invalid, return a 404 page

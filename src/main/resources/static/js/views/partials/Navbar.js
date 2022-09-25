@@ -13,15 +13,15 @@ export default function Navbar(props) {
     //If user is logged in:
     if(isLoggedIn()) {
         navbar += `
-            <a href="/me" data-link>About Me</a>
-            <a href="/me" data-link>Add Movie</a>
-            <a href="/me" data-link>Edit Movie</a>
-            <a href="/logout" data-link>Logout</a>
+            <a class="jalopy-nav" href="/me" data-link>About Me</a>
+            <a class="jalopy-nav" href="/add" data-link>Add Movie</a>
+            <a class="jalopy-nav" href="/edit" data-link>Edit Movie</a>
+            <a class="jalopy-nav" href="/logout" data-link>Logout</a>
         `;
     } else {
         navbar += `
-            <a href="/login" data-link>Login</a>
-            <a href="/register" data-link>Register</a>
+            <a class="jalopy-nav" href="/login" data-link>Login</a>
+            <a class="jalopy-nav" href="/register" data-link>Register</a>
         `;
     }
 
