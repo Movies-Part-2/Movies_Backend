@@ -22,9 +22,6 @@ export default function router(URI) {
         '/': {
             returnView: Home,
             state: {},
-            // state: {
-            //     movies: 'api/movies'
-            // },
             uri: '/',
             title: 'Home',
             viewEvent: HomeEvents
@@ -38,15 +35,15 @@ export default function router(URI) {
             title: 'All Movies',
             viewEvent: HomeEvents
         },
-        // '/movies': {
-        //     returnView: DisplayMovie,
-        //     state: {
-        //         movies: '/api/movies'
-        //         },
-        //     uri: '/movies',
-        //     title: 'Movie Selection',
-        //     viewEvent: HomeEvents
-        // },
+        '/directors': {
+            returnView: Home ,
+            state: {
+                movies: '/api/directors'
+                },
+            uri: '/directors',
+            title: 'List of Directors',
+            viewEvent: HomeEvents
+        },
         '/add': {
             returnView: InsertMovie,
             state: {

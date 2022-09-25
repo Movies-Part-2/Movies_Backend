@@ -1,11 +1,12 @@
 import {showNotification} from "../messaging.js";
-import {getUser} from "../auth.js";
+import {getHeaders, getUser} from "../auth.js";
 import createView from "../createView.js";
 
 const BASE_URI = `/api/movies`;
 
 export default function Home(props) {
-    console.log(props);
+    // console.log(props);
+
 
     let html = `
    <div class="container">
@@ -126,58 +127,111 @@ export default function Home(props) {
 
 
 
-export function HomeEvents() {
-
-    let deleteBtn = document.getElementsByClassName('delete-btn');
-    for (let i = 0; i < deleteBtn.length; i++) {
-        deleteBtn[i].addEventListener('click', deleteMovie)
+    export function HomeEvents() {
+        addMovieHandler();
+        setupDeleteHandlers();
+        getMovieId();
+        editMovie();
+        deleteMovie();
     }
 
-    let editBtn = document.querySelectorAll('.edit-btn');
-    for (let i = 0; i < editBtn.length; i++) {
-        editBtn[i].addEventListener('click', editMovie)
+
+    function  getMovieId() {
+        let request = {
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+        }
+        fetch("http://localhost:9001/api/movies/", request)
+            .then(response => response.json()).then(data => console.log(data));
     }
 
-}
+// function addMovieHandler(){
+//     const addButton = document.querySelector("#addPost")
+//     addButton.addEventListener("click", function (event) {
+//         const titleField =  document.querySelector("#title");
+//         const contentField = document.querySelector("#content");
+//         if((titleField.value === "") || (contentField.value === "")) {
+//             console.log("needs more data");
+//         }
+//         else {
+//             let newPost = {
+//                 title: titleField.value,
+//                 content: contentField.value,
+//             }
+//             console.log(newPost);
+//             let request = {
+//                 method: "POST",
+//                 headers: {"Content-Type": "application/json"},
+//                 body: JSON.stringify(newPost)
+//             }
+//             fetch("http://localhost:8080/api/posts", request)
+//                 .then(response => {
+//                     console.log(response.status);
+//                     createView("/posts");
+//                 })
+//         }})}
 
-function deleteMovie() {
-    const requestOptions = {
-        method: "DELETE",
+
+    function setupDeleteHandlers() {
+        //Follow rest-blog example for now and target all delete buttons, even though there is only one:
+        const deleteBtn = document.querySelectorAll(".delete-btn");
+        for (let i = 0; i < deleteBtn.length; i++) {
+            deleteBtn[i].addEventListener('click', function (event){
+                //get movie id of delete button:
+                const movieId = this.getAttribute("data-id");
+
+                deleteMovie(movieId);
+            });
+        }
     }
-    const dataID = this.getAttribute('data-id')
-    fetch(`BASE_URI + ${movies.id}`, requestOptions)
-        .then(function (response) {
-            if (!response.ok) {
-                console.log("error: " + response.status);
-            } else {
-                console.log("add ok");
-                createView("/");
-            }
-        });
-}
 
-
-function editMovie(props) {
-    let newMovie = prompt("Enter Movie name")
-    console.log(newMovie)
-    // let newMovie = ""
-    // newMovie = userInput
-    const requestOptions = {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({title: newMovie})
+    //Function that does the deleting work separate from setupDeleteHandler:
+    function deleteMovie() {
+        const request = {
+            method: "DELETE",
+            headers: getHeaders(),
+        }
+        const dataID = this.getAttribute("data-id");
+        const url = POST_API_BASE_URL + `/${movies.id}`;
+        fetch(url, request)
+            .then(function (response) {
+                if (response.status !== 200) {
+                    console.log("error: fetch returned bad status code " + response.status);
+                    console.log(response.statusText);
+                } else {
+                    console.log("Movie removed successfully!");
+                    createView("/movies");
+                }
+            });
     }
-    const dataID = this.getAttribute('data-id');
-    fetch(`/api/movies/${movies.id}`, requestOptions)
-        .then(function (response) {
-            if (!response.ok) {
-                console.log("error: " + response.status);
-            } else {
-                console.log("add ok");
-                createView("/");
-            }
-        });
 
-}
+    //Edit movie functionality: Original movie project worked, refactor with some of rest-blog example if needed:
+    function editMovie(props) {
+        let newMovie = prompt("Enter New Movie Name")
+        console.log(newMovie)
+        // let newMovie = ""
+        // newMovie = userInput
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({title: newMovie})
+        }
+
+        const dataID = this.getAttribute("data-id");
+        fetch(`/api/movies/${movies.id}`, requestOptions)
+            .then(function (response) {
+                if (!response.ok) {
+                    console.log("error: " + response.status);
+                } else {
+                    console.log("add ok");
+                    createView("/");
+                }
+            });
+    }
+
+
+
+
+
