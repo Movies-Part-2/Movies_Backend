@@ -1,28 +1,39 @@
-import {isLoggedIn} from "../../auth.js";
+import {getUser, isLoggedIn} from "../../auth.js";
 
 export default function Navbar(props) {
     const loggedIn = isLoggedIn();
 
-    // everyone can see home
-    let html = `
+    // what everyone can see if not logged in:
+    let navbar = `
         <nav class="navbar navbar-expand-lg bg-dark justify-content-center">
-            <a class="jalopy-nav" href="/" data-link>Home</a>`;
+            <a class="jalopy-nav" href="/" data-link>Home</a>
+            <a class="jalopy-nav" href="/genre" data-link>Categories</a>
+            <a class="jalopy-nav" href="/search" data-link>Search</a>`;
 
-    // everyone can see add movie
-    html = html + `<a class="jalopy-nav" href="/movies" data-link>Add Movie</a>`;
+    //If user is logged in:
+    if(isLoggedIn()) {
+        navbar += `
+            <a href="/me" data-link>About Me</a>
+            <a href="/me" data-link>Add Movie</a>
+            <a href="/me" data-link>Edit Movie</a>
+            <a href="/logout" data-link>Logout</a>
+        `;
+    } else {
+        navbar += `
+            <a href="/login" data-link>Login</a>
+            <a href="/register" data-link>Register</a>
+        `;
+    }
 
+    let loginName = "Not logged in";
+    if(isLoggedIn()) {
+        const loggedInUser = getUser();
+        loginName = "Logged in as " + loggedInUser.userName;
+    }
+    navbar += `
+        <span id="login-name">${loginName}</span>`;
 
-    // only logged in can see user info and logout
-    // if(loggedIn) {
-    //     html = html + `<a class="jalopy-nav" href="/users" data-link>User Info</a>
-    //         <a href="/logout" data-link>Logout</a>`;
-    // } else {
-    //     // if not logged in, can see login and register
-    //     html = html + `<a class="jalopy-nav" href="/login" data-link>Login</a>
-    //     <a class="jalopy-nav" href="/register" data-link>Register</a>`;
-    // }
+    navbar += `</nav>`;
+    return navbar;
 
-
-    html = html + `</nav>`;
-    return html;
 }

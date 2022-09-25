@@ -5,45 +5,38 @@ import createView from "../createView.js";
 const BASE_URI = `/api/movies`;
 
 export default function Home(props) {
-    // console.log(props);
 let movies = props.movies;
-console.log(movies);
-
+// console.log(movies);
     let html = `
-   <div class="container">
-      <!--
-        - Movie of the month
-      -->
-    
-      <section class="banner">
-        <div class="banner-card">
-<!--          <img src="../assets/John_Wick.jpeg" class="banner-img" alt="">-->
-          <div class="card-content">
-          <h3> Movie of the month: </h3>
-           <hr> 
-           <h2 class="card-title">John Wick: Chapter 3 - Parabellum</h2>
-                 
-            <div class="card-info">
-            
-              <div class="genre">
-                <ion-icon name="film"></ion-icon>
-                 
-                <span>Action/Thriller</span>
-              </div>
-              <div class="year">
-                <ion-icon name="calendar"></ion-icon>
-                <span>2019</span>
-              </div>
-              <div class="duration">
-                <ion-icon name="time"></ion-icon>
-                <span>2h 11m</span>
-              </div>
-              <div class="quality">4K</div>
-            </div>
-           
-          </div>
-        </div>
-      </section>
+<!--   <div class="container">-->
+<!--      &lt;!&ndash;  Movie of the month &ndash;&gt;-->
+<!--      <section class="banner">-->
+<!--        <div class="banner-card">-->
+<!--&lt;!&ndash;  <img src="../assets/John_Wick.jpeg" class="banner-img" alt="">&ndash;&gt;-->
+<!--          <div class="card-content">-->
+<!--          <h3> Movie of the month: </h3>-->
+<!--           <hr> -->
+<!--           <h2 class="card-title">John Wick: Chapter 3 - Parabellum</h2>-->
+<!--            <div class="card-info">-->
+<!--              <div class="genre">-->
+<!--                <ion-icon name="film"></ion-icon>-->
+<!--        -->
+<!--                <span>Action/Thriller</span>-->
+<!--              </div>-->
+<!--              <div class="year">-->
+<!--                <ion-icon name="calendar"></ion-icon>-->
+<!--                <span>2019</span>-->
+<!--              </div>-->
+<!--              <div class="duration">-->
+<!--                <ion-icon name="time"></ion-icon>-->
+<!--                <span>2h 11m</span>-->
+<!--              </div>-->
+<!--              <div class="quality">4K</div>-->
+<!--            </div>-->
+<!--           -->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
 <!--      Title for the movie listing -->
      <h1><em>Top Box Office Hits</em></h1>
  `;
@@ -69,64 +62,44 @@ console.log(movies);
     //
     //
     // ]
-
-    html += `
-<div class="container">
-<div class="row">
-`;
     //add a table row for each table element
     for (let i = 0; i < movies?.length; i++) {
-
         html += `
-        <!--
-          Movie section 
-        -->
- 
-        
-          <div class="movie-card col-3">
-            <div class="card-head">
-<!--              <img src="${imagePath[i]}" width="1px" height="em" class="card-img">-->
-              <div class="card-overlay">
-                <div class="bookmark">
-                  <ion-icon name="bookmark-outline"></ion-icon>
-                </div>
-                <div class="rating">
-                  <ion-icon name="star-outline"></ion-icon>
-                  <span>${props.movies.genre.id}</span>
-                </div>
-                <div class="play">
-                  <ion-icon name="play-circle-outline"></ion-icon>
-                </div>
-              </div>
-            </div>
+<!--          <div class="movie-card col-3">-->
+<!--            <div class="card-head">-->
+             <img src="${movies[i].poster}" width="25px" height="auto" class="card-img">
+<!--              <div class="card-overlay">-->
+<!--                <div class="bookmark">-->
+<!--                  <ion-icon name="bookmark-outline"></ion-icon>-->
+<!--                </div>-->
+<!--                <div class="rating">-->
+<!--                  <ion-icon name="star-outline"></ion-icon>-->
+                  <span>${movies[i].genreList[0]?.id}</span>
+<!--                </div>-->
+<!--                <div class="play">-->
+<!--                  <ion-icon name="play-circle-outline"></ion-icon>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
             <div class="card-body">
-              <h3 class="card-title"style="color:rgb(138, 0, 252);" >${props.movies[i].title}</h3>
-                <button class="edit-btn" data-id="${movies.id}">Edit</button>
-                <button class="delete-btn" data-id="${movies.id}">Delete</button>
-              <div class="card-info">
-                
-                
+              <h3 class="card-title"style="color:rgb(138, 0, 252);">${movies[i].title}</h3>
+                <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
+                <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
+<!--              <div class="card-info">-->
               </div>
-            </div>
+<!--            </div>-->
             <!--end of card  -->
-          </div>
- 
+<!--          </div>-->
             `;
     }
-
-
-    html+= `
-       </div>
-    </div>
-   </div>
-  
-`;
-
+    // html+= `
+    //    </div>
+    // </div>
+   // </div>
+//
+// `;
     return  html
-
 }
-
-
 
     export function HomeEvents() {
         // setupDeleteHandlers();
