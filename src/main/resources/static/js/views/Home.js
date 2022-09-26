@@ -7,6 +7,9 @@ import createView from "../createView.js";
 // const BASE_URI = `/api/movies`;
 
 export default function Home(props) {
+
+    // if search box has input use filtered props.movies. otherwise use props.movies
+
     let movies = props.movies;
     console.log(props);
 
@@ -22,6 +25,7 @@ export default function Home(props) {
             <div class="movie-card">
                 <div class="card-image">
                     <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
+<!--                    <p src="$[movies[i].plot}"></p>-->
                 </div>
                
                 <div class="card-body">
@@ -39,6 +43,7 @@ export default function Home(props) {
 
 
 export function HomeEvents() {
+    searchBarHandler()
     // getMovieId();
     deleteMovie();
     editMovieHandler();
@@ -52,7 +57,67 @@ export function HomeEvents() {
 //     }
 //     fetch("http://localhost:9001/api/movies/", request)
 //         .then(response => response.json()).then(data => console.log(data));
+//
+//     let searchBar = document.getElementById("search-movie");
+//     for (let i = 0; i < searchBar.length; i++) {
+//         searchBar[i].addEventListener('input', function ()) {
+//
+//         }
+//     }
+//
 // }
+
+function searchBarHandler(){
+
+//    add event listener to search bar
+//    when event is fired
+//    build a filtered list of movies based on input
+//    update Gallery Div to new HTML
+//    html = searched list
+    let movies = props.movies;
+
+    let html = `
+      <main>
+         <h1>SB Entertainment</h1>
+         <div class="gallery">
+ `;
+
+    let searchMovie = document.getElementById('search-movie');
+
+    searchMovie.addEventListener('keyup', function ()) {
+        let userInput = this.value.toLowerCase);
+        let filteredMovies = [];
+
+        filteredMovies.forEach(props.movies.title => movie) {
+            if (movies.contains(userInput)) {
+                filteredMovies.push(movies[i])
+            }
+        }
+
+        movie.forEach(filteredMovie => movies) {
+            html += `
+            <div class="movie-card">
+                <div class="card-image">
+                    <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
+<!--                    <p src="$[movies[i].plot}"></p>-->
+                </div>
+               
+                <div class="card-body">
+                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</h3>
+                    <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
+                    <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
+                </div> 
+            </div>
+           `;
+        }
+
+
+        html += `</div></main>`;
+
+        return  html
+
+    }
+}
 
 
 // Function that does the deleting movie when button pressed:
