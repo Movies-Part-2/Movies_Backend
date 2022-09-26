@@ -12,7 +12,7 @@ export default function Home(props) {
 
     let html = `
       <main>
-         <h1>SB Entertainment</h1>
+         <h1 class="neonText">SB Entertainment</h1>
          <div class="flex-container">
  `;
 
@@ -68,8 +68,8 @@ function deleteMovie() {
             }
             const url = POST_API_BASE_URL + `/${deleteBtn[i].getAttribute("data-id")}`;
             fetch(url, request).then(response => response.json()).then(data => {
-                // location.reload();
-                createView("/movies");
+                location.reload();
+                // createView("/movies");
             })
         })}}
 //function to send user to EditMovie view when edit button clicked:

@@ -112,10 +112,36 @@ nav span{
 
 }
 
+.neonText {
+    color: #fff;
+    text-shadow:
+        /* White glow */
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+                /* Green glow */
+            0 0 42px #0fa,
+            0 0 82px #0fa,
+            0 0 92px #0fa,
+            0 0 102px #0fa,
+            0 0 151px #0fa;
+}
+
 .edit-btn, .delete-btn {
     color: #8a00fc;
 }
 
+.card-body{
+    /*height: 200px;*/
+    width: 300px ;
+    padding: 10px;
+    margin: 15px;
+}
+
+.card-image{
+    margin:20px;
+    padding: 5px;
+}
 
 
 
@@ -126,14 +152,16 @@ nav span{
   ===============#MOVIEES SECTION
 /*---------------------------------------------*/
 
-.movies { margin-bottom: 0px; }
+.movies {
+    margin-bottomm: 0;
+}
 
 /*----------------------------------------*
  *------------ filter bar style
  -----------------------------------------*/
 
 .filter-bar {
-    display:         flex;
+    display: flex;
     justify-content: space-between;
     align-items:     center;
 
@@ -212,10 +240,10 @@ input ~ .checked-radio-bg {
 /*-------------------------------------------------------------------------------*/
 /** the hand shows up for scaling overlay element on card hover*/
 /*-------------------------------------------------------------------------------*/
-.movie-card {
-    --scale: 0.8;
-    cursor: pointer;
-}
+/*.movie-card {*/
+/*    --scale: 0.8;*/
+/*    cursor: pointer;*/
+/*}*/
 
 /*-----------------------------------------------*/
 /*each movie has are card surrounding it */
@@ -230,21 +258,21 @@ input ~ .checked-radio-bg {
 
 /*--------------zoom in the blur effect
 ----------------------------------------------------------------*/
-.movie-card:hover .card-img { transform: scale(1.1); }
-.card-img {
-    width: 10em
-}
+/*.movie-card:hover .card-img { transform: scale(1.1); }*/
+/*.card-img {*/
+/*    width: 10em*/
+/*}*/
 
 
 /*----------------------------------
 Adds the blur effect
---------------------------------------*/
-.movie-card .card-overlay {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    /*backdrop-filter: blur(5px);*/
-}
+/*--------------------------------------*!*/
+/*.movie-card .card-overlay {*/
+/*    position: absolute;*/
+/*    inset: 0;*/
+/*    opacity: 0;*/
+/*    !*backdrop-filter: blur(5px);*!*/
+/*}*/
 
 /*.movie-card:hover .card-overlay { opacity: 1; }*/
 .card-overlay {}
@@ -260,12 +288,17 @@ Adds the blur effect
 
 }
 
-.movie-card .rating {
-    display:     flex;
-    align-items: center;
-    right: 15px;
-
+.flex-container{
+    margin: 0;
+    padding: 0;
 }
+
+/*.movie-card .rating {*/
+/*    display:  flex;*/
+/*    align-items: center;*/
+/*    right: 15px;*/
+
+/*}*/
 
 
 
@@ -290,7 +323,7 @@ Adds the blur effect
     position: absolute;
     top: 50%;
     left: 50%;
-    color: #999;
+    color: ghostwhite;
     width: 100px;
     height: 30px;
     margin: -7px 0 0 -45px;
