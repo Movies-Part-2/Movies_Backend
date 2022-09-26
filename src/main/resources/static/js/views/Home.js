@@ -104,9 +104,9 @@ function searchBarHandler(e){
                 </div>
 
                 <div class="card-body">
-                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies.title}</h3>
-                    <button class="edit-btn" data-id="${movies.id}">Edit</button>
-                    <button class="delete-btn" data-id="${movies.id}">Delete</button>
+                    <h3 class="card-title">${movie.title}</h3>
+                    <button class="edit-btn" data-id="${movie.id}">Edit</button>
+                    <button class="delete-btn" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
            `;
