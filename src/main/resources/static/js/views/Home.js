@@ -5,12 +5,13 @@ import createView from "../createView.js";
 
 
 // const BASE_URI = `/api/movies`;
+let movies = [];
 
 export default function Home(props) {
 
     // if search box has input use filtered props.movies. otherwise use props.movies
 
-    let movies = props.movies;
+    movies = props.movies;
     console.log(props);
 
     let html = `
@@ -19,13 +20,14 @@ export default function Home(props) {
          <div class="gallery">
  `;
 
+    html += `<div id="movies-container">`;
     //add a table row for each table element
     for (let i = 0; i < movies?.length; i++) {
         html += `
             <div class="movie-card">
                 <div class="card-image">
                     <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
-<!--                    <p src="$[movies[i].plot}"></p>-->
+                    
                 </div>
                
                 <div class="card-body">
@@ -36,7 +38,7 @@ export default function Home(props) {
             </div>
            `;
     }
-    html += `</div></main>`;
+    html += `</div></div></main>`;
 
     return  html
 }
@@ -67,56 +69,54 @@ export function HomeEvents() {
 //
 // }
 
-function searchBarHandler(){
+function searchBarHandler(e){
 
 //    add event listener to search bar
 //    when event is fired
 //    build a filtered list of movies based on input
 //    update Gallery Div to new HTML
 //    html = searched list
-    let movies = props.movies;
+//     console.log(movies)
 
-    let html = `
-      <main>
-         <h1>SB Entertainment</h1>
-         <div class="gallery">
- `;
+    let searchMovie = document.getElementById('search');
 
-    let searchMovie = document.getElementById('search-movie');
-
-    searchMovie.addEventListener('keyup', function ()) {
-        let userInput = this.value.toLowerCase);
+    searchMovie.addEventListener('keyup', function () {
+        // e.preventDefault();
+        let userInput = this.value.toLowerCase();
         let filteredMovies = [];
 
-        filteredMovies.forEach(props.movies.title => movie) {
-            if (movies.contains(userInput)) {
-                filteredMovies.push(movies[i])
+        movies.forEach(function(movie) {
+            if (movie.title.includes(userInput)) {
+                filteredMovies.push(movie);
             }
-        }
+        });
 
-        movie.forEach(filteredMovie => movies) {
+        let html = "";
+        const moviesContainer = document.querySelector("#movies-container");
+
+        filteredMovies.forEach(function(movie) {
             html += `
             <div class="movie-card">
                 <div class="card-image">
-                    <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
+                    <img src="${movie.poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
 <!--                    <p src="$[movies[i].plot}"></p>-->
                 </div>
-               
+
                 <div class="card-body">
-                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</h3>
-                    <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
-                    <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
-                </div> 
+                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies.title}</h3>
+                    <button class="edit-btn" data-id="${movies.id}">Edit</button>
+                    <button class="delete-btn" data-id="${movies.id}">Delete</button>
+                </div>
             </div>
            `;
-        }
+        });
 
 
-        html += `</div></main>`;
+        // html += `</div></main>`;
 
-        return  html
+        moviesContainer.innerHTML = html;
 
-    }
+    });
 }
 
 
