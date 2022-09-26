@@ -111,7 +111,8 @@ function editMovieHandler() {
                     fetch(url, request)
                         .then(response => {
                             console.log(response.status);
-                            createView('/');
+                            location.reload();
+                            // createView('/');
                         });
                         // if (!response.ok){
                         //     console.log("err");
