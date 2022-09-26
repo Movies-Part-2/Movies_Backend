@@ -91,27 +91,37 @@ function editMovieHandler() {
         <button class="form-control" id="edit-btn">Save Changes</button>
      </div>
  `;
-            let movieInput = document.getElementById("movieInput");
-            movieInput.addEventListener("input", () => console.log(movieInput.value));
-            let ratingInput = document.getElementById("ratingInput");
-            ratingInput.addEventListener("input", () => console.log(ratingInput.value));
-            document.getElementById("edit-btn").addEventListener("click", function(event) {
-                event.preventDefault();
-                let data = {
-                    "id": editId,
-                    "title": movieInput.value,
-                    "score": ratingInput.value
-
-                }
-                console.log(data);
-                const request = {
-                    method: "PUT",
-                    headers: "Content-Type: application/json",
-                    body: JSON.stringify(data)
-                }
-                const url = POST_API_BASE_URL + `/api/movies/${editId}`;
-                fetch(url, request).then(response => response.json()).then(data => {console.log(data)})
-            })
+                let movieInput = document.getElementById("movieInput");
+                movieInput.addEventListener("input", () => console.log(movieInput.value));
+                let ratingInput = document.getElementById("ratingInput");
+                ratingInput.addEventListener("input", () => console.log(ratingInput.value));
+                document.getElementById("edit-btn").addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let data = {
+                        title: movieInput.value,
+                        score: ratingInput.value
+                    }
+                    console.log(data);
+                    const request = {
+                        method: "PUT",
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(data)
+                    }
+                    const url = POST_API_BASE_URL + `/api/movies/${editId}`;
+                    fetch(url, request)
+                        .then(response => {
+                            console.log(response.status);
+                            createView('/');
+                        });
+                        // if (!response.ok){
+                        //     console.log("err");
+                        // }
+                        // else {
+                        // response.json().then(r => console.log(r))
+                    // }}).then(data => {
+                    //     console.log(data)
+                    // }).catch( error => console.log(error))
+                });
         })}}
 
 
