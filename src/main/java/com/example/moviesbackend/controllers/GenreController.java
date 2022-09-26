@@ -34,6 +34,9 @@ public class GenreController {
     public void createGenre(@RequestBody Genre newGenre) {
         genresRepository.save(newGenre);
     }
+
+
+
     @DeleteMapping("/{id}")
     public void deleteGenreById(@PathVariable long id) {
         Optional<Genre> optionalGenre = genresRepository.findById(id);

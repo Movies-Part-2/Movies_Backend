@@ -41,7 +41,7 @@ export default function Home(props) {
 export function HomeEvents() {
     // getMovieId();
     deleteMovie();
-    editMovie();
+    editMovieHandler();
 }
 
 //Do not need another fetch if using props.movies:
@@ -72,51 +72,48 @@ function deleteMovie() {
                 createView("/movies");
             })
         })}}
-
-
-function editModal() {
-
-    return `
-<div class="modal">
-    <form class="container">
-        <h1>Edit Movie</h1>
-        <form class="form-styling">
-            <label for="movieInput" class="form-label">Edit Name</label>
-            <input class="form-control" list="datalistOptions" id="movieInput" placeholder="Enter Movie">
-                <label for="ratingInput" class="form-label">Edit Score</label>
-                <input class="form-control" list="datalistOptions" id="ratingInput" placeholder="Enter Rating">
-                    <button class="form-control" id="edit-btn" data-id>Save Changes</button>
-        </form>
- </div>`;
-}
-
-
-
-
-
-
-
-
-
 //function to send user to EditMovie view when edit button clicked:
-function editMovie() {
+function editMovieHandler() {
     let editBtn = document.querySelectorAll('.edit-btn');
     for (let i = 0; i < editBtn.length; i++) {
         editBtn[i].addEventListener('click', (event) => {
-    //         console.log("clicked");
-            let id = editBtn[i].getAttribute("data-id");
-    //         let id = POST_API_BASE_URL + `/${editBtn[i].getAttribute("data-id")}`;
-    //         const request = {
-    //             method: "PUT",
-    //             headers: getHeaders(),
-    //         }
-    //         const url = POST_API_BASE_URL + `/${editBtn[i].getAttribute("data-id")}`;
-    //         fetch(url, request).then(response => response.json()).then(data => {
-    //             // location.reload();
-    //             createView(`/edit/${id}`);
-            createView("/edit")
-            // })
-        })}
-    }
+            let editId = editBtn[i].getAttribute("data-id");
+            let modal = document.createElement("div");
+            console.log("clicked " + editId);
+            document.body.appendChild(modal);
+            modal.innerHTML = `     
+     <div>       
+     <h1>Edit Movie</h1>
+        <label for="movieInput" class="form-label">Edit Name</label>
+        <input class="form-control" id="movieInput" placeholder="Enter Movie" >
+        <label for="ratingInput" class="form-label">Edit Score</label>
+        <input class="form-control" id="ratingInput" placeholder="Enter Rating">
+        <button class="form-control" id="edit-btn">Save Changes</button>
+     </div>
+ `;
+            let movieInput = document.getElementById("movieInput");
+            movieInput.addEventListener("input", () => console.log(movieInput.value));
+            let ratingInput = document.getElementById("ratingInput");
+            ratingInput.addEventListener("input", () => console.log(ratingInput.value));
+            document.getElementById("edit-btn").addEventListener("click", function(event) {
+                event.preventDefault();
+                let data = {
+                    "id": editId,
+                    "title": movieInput.value,
+                    "score": ratingInput.value
+
+                }
+                console.log(data);
+                const request = {
+                    method: "PUT",
+                    headers: "Content-Type: application/json",
+                    body: JSON.stringify(data)
+                }
+                const url = POST_API_BASE_URL + `/api/movies/${editId}`;
+                fetch(url, request).then(response => response.json()).then(data => {console.log(data)})
+            })
+        })}}
+
+
 
 
