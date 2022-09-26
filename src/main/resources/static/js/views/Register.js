@@ -1,10 +1,13 @@
-import createView from "../createView.js"
-import {getHeaders, isLoggedIn} from "../auth.js";
-
-const BASE_URI = `/api/movies`;
+import CreateView from "../createView.js"
+import {isLoggedIn} from "../auth.js";
+import createView from "../createView.js";
 
 export default function Register(props) {
-    // language=HTML
+    if(isLoggedIn()) {
+        createView("/");
+        return;
+    }
+
     return `
     <!DOCTYPE html>
         <html>
@@ -14,7 +17,9 @@ export default function Register(props) {
             </head>
             <body>
                 <h1>Register</h1>
-        
+                   
+                   <a href="/login" data-link>Go to login</a>
+                   
                 <form id="register-form">
                     <label for="username">Username</label>
                     <input id="username" name="username" type="text"/>
@@ -24,37 +29,39 @@ export default function Register(props) {
                     <input id="password" name="password" type="password"/>
                     <button id="register-btn" type="button">Register</button>
                 </form>
+                               
             </body>
         </html>
 `;
 }
 
 export function RegisterEvent(){
-    console.log("am I logged in ? " + isLoggedIn());
+    const registerButton = document.querySelector("#register-btn");
+    registerButton.addEventListener("click", function(event) {
 
-    document.querySelector("#register-btn").addEventListener("click", function(){
+        const usernameField = document.querySelector("#username");
+        const emailField = document.querySelector("#email");
+        const passwordField = document.querySelector("#password");
 
-        // make a new user object from the provided fields
         let newUser = {
-            username: document.querySelector("#username").value,
-            email: document.querySelector("#email").value,
-            password: document.querySelector("#password").value
+            userName: usernameField.value,
+            email: emailField.value,
+            password: passwordField.value
         }
 
-        console.log(newUser);
+        // console.log(newUser);
 
-        // make the request to send to the backend
         let request = {
             method: "POST",
-            headers: getHeaders(),
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newUser)
         }
 
-        fetch(BASE_URI, request)
+        fetch(USER_API_BASE_URL + "/create", request)
             .then(response => {
                 console.log(response.status);
-                createView("/");
+                CreateView("/");
             })
 
-    });
+    })
 }
