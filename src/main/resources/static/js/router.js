@@ -42,20 +42,14 @@ export default function router(URI) {
         // },
         '/edit': {
             returnView: EditMovie ,
-            state: {
-                movies: {
-                    url: "localhost:9001/api/edit"
-                }
-            },
+            state: {},
             uri: '/edit',
             title: 'Edit Movies',
             viewEvent: EditMovieEvents
         },
         '/add': {
             returnView: InsertMovie,
-            state: {
-                movies: '/api/movies/add'
-            },
+            state: {},
             uri: '/add',
             title: 'Add Movie',
             viewEvent: InsertMovieEvents

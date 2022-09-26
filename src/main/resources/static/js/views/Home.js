@@ -1,9 +1,7 @@
 import {showNotification} from "../messaging.js";
-import {editMovie} from "./EditMovies.js";
+// import {editMovie} from "./EditMovies.js";
 import {getHeaders, getUser} from "../auth.js";
 import createView from "../createView.js";
-
-
 
 
 // const BASE_URI = `/api/movies`;
@@ -43,12 +41,10 @@ export default function Home(props) {
 export function HomeEvents() {
     // getMovieId();
     deleteMovie();
-
-    // const editButton = document.querySelectorAll(".edit-btn");
-    // for (let i = 0; i < editButton.length; i++) {
-    //     editButton[i].addEventListener("click", editMovie);
-    // }
+    editMovie();
 }
+
+//Do not need another fetch if using props.movies:
 // function  getMovieId() {
 //     let request = {
 //         method: "GET",
@@ -57,26 +53,10 @@ export function HomeEvents() {
 //     fetch("http://localhost:9001/api/movies/", request)
 //         .then(response => response.json()).then(data => console.log(data));
 // }
-// function setupDeleteHandlers() {
-//     //Follow rest-blog example for now and target all delete buttons, even though there is only one:
-//     const deleteBtn = document.querySelectorAll(".delete-btn");
-//     for (let i = 0; i < deleteBtn.length; i++) {
-//         deleteBtn[i].addEventListener('click', function (event){
-//             //get movie id of delete button:
-//             const movieId = this.getAttribute("data-id");
-//             deleteMovie(movieId);
-//             });
-//         }
-//     }
-    // Function that does the deleting work separate from setupDeleteHandler:
+
+
+// Function that does the deleting movie when button pressed:
 function deleteMovie() {
-    let deleteBtn = document.querySelectorAll('.delete-btn');
-    for (let i = 0; i < deleteBtn.length; i++) {
-        deleteBtn[i].addEventListener('click', (event) => {
-            console.log("clicked");
-            console.log(deleteBtn[i].getAttribute("data-id"));
-        })}}
-function deleteMovie2() {
     let deleteBtn = document.querySelectorAll('.delete-btn');
     for (let i = 0; i < deleteBtn.length; i++) {
         deleteBtn[i].addEventListener('click', (event) => {
@@ -88,7 +68,55 @@ function deleteMovie2() {
             }
             const url = POST_API_BASE_URL + `/${deleteBtn[i].getAttribute("data-id")}`;
             fetch(url, request).then(response => response.json()).then(data => {
-                location.reload();
-                // createView("/movies");
+                // location.reload();
+                createView("/movies");
             })
         })}}
+
+
+function editModal() {
+
+    return `
+<div class="modal">
+    <form class="container">
+        <h1>Edit Movie</h1>
+        <form class="form-styling">
+            <label for="movieInput" class="form-label">Edit Name</label>
+            <input class="form-control" list="datalistOptions" id="movieInput" placeholder="Enter Movie">
+                <label for="ratingInput" class="form-label">Edit Score</label>
+                <input class="form-control" list="datalistOptions" id="ratingInput" placeholder="Enter Rating">
+                    <button class="form-control" id="edit-btn" data-id>Save Changes</button>
+        </form>
+ </div>`;
+}
+
+
+
+
+
+
+
+
+
+//function to send user to EditMovie view when edit button clicked:
+function editMovie() {
+    let editBtn = document.querySelectorAll('.edit-btn');
+    for (let i = 0; i < editBtn.length; i++) {
+        editBtn[i].addEventListener('click', (event) => {
+    //         console.log("clicked");
+            let id = editBtn[i].getAttribute("data-id");
+    //         let id = POST_API_BASE_URL + `/${editBtn[i].getAttribute("data-id")}`;
+    //         const request = {
+    //             method: "PUT",
+    //             headers: getHeaders(),
+    //         }
+    //         const url = POST_API_BASE_URL + `/${editBtn[i].getAttribute("data-id")}`;
+    //         fetch(url, request).then(response => response.json()).then(data => {
+    //             // location.reload();
+    //             createView(`/edit/${id}`);
+            createView("/edit")
+            // })
+        })}
+    }
+
+
