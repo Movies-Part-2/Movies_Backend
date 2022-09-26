@@ -5,9 +5,13 @@ import createView from "../createView.js";
 
 
 // const BASE_URI = `/api/movies`;
+let movies = [];
 
 export default function Home(props) {
-    let movies = props.movies;
+
+    // if search box has input use filtered props.movies. otherwise use props.movies
+
+    movies = props.movies;
     console.log(props);
 
     let html = `
@@ -16,29 +20,33 @@ export default function Home(props) {
          <div class="flex-container">
  `;
 
+    html += `<div id="movies-container">`;
     //add a table row for each table element
     for (let i = 0; i < movies?.length; i++) {
         html += `
             <div class="movie-flex">
                 <div class="card-image card-body">
                     <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
+
 <!--                </div>-->
               
 <!--                <div class="card-body">-->
                     <div class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</div>
+
                     <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
                     <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
                 </div> 
             </div>
            `;
     }
-    html += `</div></main>`;
+    html += `</div></div></main>`;
 
     return  html
 }
 
 
 export function HomeEvents() {
+    searchBarHandler()
     // getMovieId();
     deleteMovie();
     editMovieHandler();
@@ -52,7 +60,65 @@ export function HomeEvents() {
 //     }
 //     fetch("http://localhost:9001/api/movies/", request)
 //         .then(response => response.json()).then(data => console.log(data));
+//
+//     let searchBar = document.getElementById("search-movie");
+//     for (let i = 0; i < searchBar.length; i++) {
+//         searchBar[i].addEventListener('input', function ()) {
+//
+//         }
+//     }
+//
 // }
+
+function searchBarHandler(e){
+
+//    add event listener to search bar
+//    when event is fired
+//    build a filtered list of movies based on input
+//    update Gallery Div to new HTML
+//    html = searched list
+//     console.log(movies)
+
+    let searchMovie = document.getElementById('search');
+
+    searchMovie.addEventListener('keyup', function () {
+        // e.preventDefault();
+        let userInput = this.value.toLowerCase();
+        let filteredMovies = [];
+
+        movies.forEach(function(movie) {
+            if (movie.title.includes(userInput)) {
+                filteredMovies.push(movie);
+            }
+        });
+
+        let html = "";
+        const moviesContainer = document.querySelector("#movies-container");
+
+        filteredMovies.forEach(function(movie) {
+            html += `
+            <div class="movie-card">
+                <div class="card-image">
+                    <img src="${movie.poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
+<!--                    <p src="$[movies[i].plot}"></p>-->
+                </div>
+
+                <div class="card-body">
+                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies.title}</h3>
+                    <button class="edit-btn" data-id="${movies.id}">Edit</button>
+                    <button class="delete-btn" data-id="${movies.id}">Delete</button>
+                </div>
+            </div>
+           `;
+        });
+
+
+        // html += `</div></main>`;
+
+        moviesContainer.innerHTML = html;
+
+    });
+}
 
 
 // Function that does the deleting movie when button pressed:
