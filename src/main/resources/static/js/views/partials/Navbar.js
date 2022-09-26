@@ -41,8 +41,8 @@ export default function Navbar(props) {
         const loggedInUser = getUser();
         loginName = "Logged in as " + loggedInUser.userName;
     }
-    navbar += `
-        <span id="login-name">${loginName}</span>`;
+    // navbar += `
+    //     <span id="login-name">${loginName}</span>`;
 
     navbar += `</nav>`;
     return navbar;

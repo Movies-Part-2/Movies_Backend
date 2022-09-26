@@ -4,16 +4,18 @@
     box-sizing: border-box;
 }
 body {
-    background: #450638;
+    margin: 0;
+    background: #001926;
+    /*background: radial-gradient(circle, rgba(255,154,140,1) 0%, rgba(226,99,174,1) 100%);*/
     display: flex;
     font-family: Zaptron-Regular, serif;
-    position: relative;
 }
 h1{
-    position: relative;
+    /*position: relative;*/
     text-align: center;
-    color: #B16D9D;
-    font-size:5em;
+    -webkit-text-stroke: 2px #00C89F;
+    color:#DF7997;
+    font-size:4em;
     padding:10px 0 10px 0; /* Tweak this to your liking */
 }
 
@@ -27,9 +29,15 @@ footer {
 .jalopy-container {
     position: relative;
     min-height: 100vh;
-
-
 }
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
 #app {
     padding-bottom: 2.5rem;
 }
@@ -104,72 +112,56 @@ nav span{
 
 }
 
-
-
-
-/**
- * <!-----------------------------------------------
-        - Movie of the month
-     ---------------------============================== -->
- */
-
-.banner { margin-bottom: 60px; }
-
-.banner-card {
-    position: relative;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 20px;
-    cursor: pointer;
+.neonText {
+    color: #fff;
+    text-shadow:
+        /* White glow */
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+                /* Green glow */
+            0 0 42px #0fa,
+            0 0 82px #0fa,
+            0 0 92px #0fa,
+            0 0 102px #0fa,
+            0 0 151px #0fa;
 }
 
-.banner-img { object-position: center; }
-
-.banner-card:hover .banner-img { transform: scale(1.1); }
-
-.banner-card .card-content {
-    position: absolute;
-    right:  80px;
-    bottom: 60px;
-    left:   80px;
+.edit-btn, .delete-btn {
+    color: #8a00fc;
 }
 
-.banner-card .card-info {
-    display:     flex;
-    align-items: center;
-    margin-bottom: 20px;
+.card-body{
+    /*height: 200px;*/
+    width: 300px ;
+    padding: 10px;
+    margin: 15px;
 }
 
-.banner-card .card-info div {
-    display:     flex;
-    align-items: center;
-    margin-right: 20px;
+.card-image{
+    margin:20px;
+    padding: 5px;
 }
 
 
 
-.banner-card .card-title {
-    font-size: 3em;
 
-    text-shadow: 2px 0 2px #8a00fc;
-}
-/*---------------------------------------------*/
-/*----------Heading for the Movie section--*/
-/*----------------------------------------------*/
 
 
 /*--------------------------------------------*\
-  ===============#MOIVES SECTION
+  ===============#MOVIEES SECTION
 /*---------------------------------------------*/
 
-.movies { margin-bottom: 0px; }
+.movies {
+    margin-bottomm: 0;
+}
 
 /*----------------------------------------*
  *------------ filter bar style
  -----------------------------------------*/
 
 .filter-bar {
-    display:         flex;
+    display: flex;
     justify-content: space-between;
     align-items:     center;
 
@@ -239,19 +231,19 @@ input ~ .checked-radio-bg {
  * movies grid for forming the rows
  ======================================*/
 
-.flex-grid {
-    display: flex;
-    /*flex-wrap: wrap;*/
-    /*gap: 30px;*/
+/*.flex-grid {*/
+/*    display: flex;*/
+/*    !*flex-wrap: wrap;*!*/
+/*    !*gap: 30px;*!*/
 
-}
+/*}*/
 /*-------------------------------------------------------------------------------*/
 /** the hand shows up for scaling overlay element on card hover*/
 /*-------------------------------------------------------------------------------*/
-.movie-card {
-    --scale: 0.8;
-    cursor: pointer;
-}
+/*.movie-card {*/
+/*    --scale: 0.8;*/
+/*    cursor: pointer;*/
+/*}*/
 
 /*-----------------------------------------------*/
 /*each movie has are card surrounding it */
@@ -266,21 +258,21 @@ input ~ .checked-radio-bg {
 
 /*--------------zoom in the blur effect
 ----------------------------------------------------------------*/
-.movie-card:hover .card-img { transform: scale(1.1); }
-.card-img {
-    width: 10em
-}
+/*.movie-card:hover .card-img { transform: scale(1.1); }*/
+/*.card-img {*/
+/*    width: 10em*/
+/*}*/
 
 
 /*----------------------------------
 Adds the blur effect
---------------------------------------*/
-.movie-card .card-overlay {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    /*backdrop-filter: blur(5px);*/
-}
+/*--------------------------------------*!*/
+/*.movie-card .card-overlay {*/
+/*    position: absolute;*/
+/*    inset: 0;*/
+/*    opacity: 0;*/
+/*    !*backdrop-filter: blur(5px);*!*/
+/*}*/
 
 /*.movie-card:hover .card-overlay { opacity: 1; }*/
 .card-overlay {}
@@ -296,56 +288,161 @@ Adds the blur effect
 
 }
 
-.movie-card .rating {
-    display:     flex;
-    align-items: center;
-    right: 15px;
-
+.flex-container{
+    margin: 0;
+    padding: 0;
 }
+
+/*.movie-card .rating {*/
+/*    display:  flex;*/
+/*    align-items: center;*/
+/*    right: 15px;*/
+
+/*}*/
 
 
 
 /*-------------------------------------------------------------------------*/
-/*----------POPCORN SVG FROM CODE PEN--*/
+/*----------LOADING SCREEN--*/
 /*------------------------------------------------------------------------*/
-
-
-.mypopcorn {
-    padding:20px;
+.loading{
+    background: #2F4858;
 }
 
-.popcorn{
-    margin: auto;
-    position: absolute;
-    width:85px;
-    top: 30%;
+#loading-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
     left: 0;
-    bottom: 0;
-    right: 0;
-}
-
-circle#popcrncirlce {
-    fill: #FFE477;
-    transform-origin: 0 0;
-    -webkit-transform-origin: 0 0;
-    -webkit-animation: rotate 1.5s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
-    animation: rotate 1.5s cubic-bezier(.49,.05,.32,1.04) infinite alternate;
+    top: 0;
 }
 
 
+#loading-text {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: ghostwhite;
+    width: 100px;
+    height: 30px;
+    margin: -7px 0 0 -45px;
+    text-align: center;
+    font-family: Zaptron-Regular, serif;
+    font-size: 20px;
+}
 
-@-webkit-keyframes rotate {
-    50% {
-        -webkit-transform: translate(0px, 100px);
+#loading-content {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 170px;
+    height: 170px;
+    margin: -85px 0 0 -85px;
+    border: 3px solid #F00;
+}
+#loading-content:after {
+    content: "";
+    position: absolute;
+    border: 3px solid #0F0;
+    left: 15px;
+    right: 15px;
+    top: 15px;
+    bottom: 15px;
+}
+
+#loading-content:before {
+    content: "";
+    position: absolute;
+    border: 3px solid #00F;
+    left: 5px;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
+}
+
+#loading-content {
+    border: 3px solid transparent;
+    border-top-color: #4D658D;
+    border-bottom-color: #4D658D;
+    border-radius: 50%;
+    -webkit-animation: loader 2s linear infinite;
+    -moz-animation: loader 2s linear infinite;
+    -o-animation: loader 2s linear infinite;
+    animation: loader 2s linear infinite;
+}
+#loading-content:before {
+    border: 3px solid transparent;
+    border-top-color: #D4CC6A;
+    border-bottom-color: #D4CC6A;
+    border-radius: 50%;
+    -webkit-animation: loader 3s linear infinite;
+    -moz-animation: loader 2s linear infinite;
+    -o-animation: loader 2s linear infinite;
+    animation: loader 3s linear infinite;
+}
+#loading-content:after {
+    border: 3px solid transparent;
+    border-top-color: #84417C;
+    border-bottom-color: #84417C;
+    border-radius: 50%;
+    -webkit-animation: loader 1.5s linear infinite;
+    animation: loader 1.5s linear infinite;
+    -moz-animation: loader 2s linear infinite;
+    -o-animation: loader 2s linear infinite;
+}
+
+@-webkit-keyframes loaders {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
-@keyframes rotate {
-    50% {
-        transform: translate(0px, 100px);
+@keyframes loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
-.edit-btn, .delete-btn {
-    color: #8a00fc;
+#content-wrapper {
+    color: #FFF;
+    position: fixed;
+    left: 0;
+    top: 20px;
+    width: 100%;
+    height: 100%;
 }
+
+#header
+{
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    height: 100px;
+    background-color: #666;
+}
+
+#content
+{
+    width: 800px;
+    height: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #888;
+}
+
