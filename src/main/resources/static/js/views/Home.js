@@ -13,19 +13,19 @@ export default function Home(props) {
     let html = `
       <main>
          <h1>SB Entertainment</h1>
-         <div class="gallery">
+         <div class="flex-container">
  `;
 
     //add a table row for each table element
     for (let i = 0; i < movies?.length; i++) {
         html += `
-            <div class="movie-card">
-                <div class="card-image">
+            <div class="movie-flex">
+                <div class="card-image card-body">
                     <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
-                </div>
-               
-                <div class="card-body">
-                    <h3 class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</h3>
+<!--                </div>-->
+              
+<!--                <div class="card-body">-->
+                    <div class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</div>
                     <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
                     <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
                 </div> 
