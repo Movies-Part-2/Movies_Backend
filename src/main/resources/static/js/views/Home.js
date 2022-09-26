@@ -87,7 +87,7 @@ function searchBarHandler(e){
         let filteredMovies = [];
 
         movies.forEach(function(movie) {
-            if (movie.title.includes(userInput)) {
+            if (movie.title.toLowerCase().includes(userInput)) {
                 filteredMovies.push(movie);
             }
         });
