@@ -128,19 +128,24 @@ nav span{
 }
 
 .edit-btn, .delete-btn {
-    color: #8a00fc;
+    color: #C2FCF4;
+    text-align: center;
 }
 
 .card-body{
     /*height: 200px;*/
     width: 300px ;
-    padding: 10px;
-    margin: 15px;
+    /*padding: 10px;*/
+    /*margin: 15px;*/
+    font-size: 10px;
+     color:  #C2FCF4;
 }
 
 .card-image{
-    margin:20px;
-    padding: 5px;
+        /*height: 200px;*/
+        width: 300px ;
+        padding: 10px;
+
 }
 
 
@@ -152,9 +157,9 @@ nav span{
   ===============#MOVIEES SECTION
 /*---------------------------------------------*/
 
-.movies {
-    margin-bottomm: 0;
-}
+/*.movies {*/
+/*    margin-bottomm: 0;*/
+/*}*/
 
 /*----------------------------------------*
  *------------ filter bar style
@@ -240,14 +245,25 @@ input ~ .checked-radio-bg {
 /*-------------------------------------------------------------------------------*/
 /** the hand shows up for scaling overlay element on card hover*/
 /*-------------------------------------------------------------------------------*/
-/*.movie-card {*/
-/*    --scale: 0.8;*/
-/*    cursor: pointer;*/
-/*}*/
+.movie-card {
+    /*--scale: 0.8;*/
+    /*cursor: pointer;*/
+    /*width: 300px;*/
+    margin: 10px;
+    padding:5px;
+}
+
+#search-movie{
+    border-radius: 8%;
+    color:black;
+    background: whitesmoke;
+}
 
 /*-----------------------------------------------*/
 /*each movie has are card surrounding it */
 /*-----------------------------------------------*/
+
+
 .card-head {
     position: relative;
     height: 250px;
@@ -289,8 +305,17 @@ Adds the blur effect
 }
 
 .flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
+}
+
+#movies-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /*.movie-card .rating {*/

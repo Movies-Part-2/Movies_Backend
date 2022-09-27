@@ -17,6 +17,13 @@ export default function Home(props) {
     let html = `
       <main>
          <h1 class="neonText">SB Entertainment</h1>
+          <form id="search-movie" style="text-align: center">
+                <label for="search">Search:</label>
+                <input type="text" name="search" id="search">
+                <button name="search_btn">Search</button>
+                <button name="reset" type="reset">Reset</button>
+            </form>
+            <div id="app"></div>
          <div class="flex-container">
  `;
 
@@ -24,18 +31,20 @@ export default function Home(props) {
     //add a table row for each table element
     for (let i = 0; i < movies?.length; i++) {
         html += `
-            <div class="movie-flex">
-                <div class="card-image card-body">
+            <div class="movie-card">
+                <div class="card-image">
                     <img src="${movies[i].poster}" width="25px" height="auto" class="card-img" alt="movie-poster">
-
-<!--                </div>-->
-              
-<!--                <div class="card-body">-->
-                    <div class="card-title" style="color:rgb(138, 0, 252);">${movies[i].title}</div>
-
-                    <button class="edit-btn" data-id="${movies[i].id}">Edit</button>
-                    <button class="delete-btn" data-id="${movies[i].id}">Delete</button>
+                </div>
+                <div class="card-body">
+                    <div class="card-title" style="color:rgb(138, 0, 252);">Title: ${movies[i].title}</div>
+                    <div class="card-plot">${movies[i].plot}</div>
+                    <br>
+                    <div class="card-plot">Movie Score: ${movies[i].score}</div>
                 </div> 
+                <div class="card-buttons">
+                    <button class="edit-btn" style="text-align: center" data-id="${movies[i].id}">Edit</button>
+                    <button class="delete-btn" style="text-align: center" data-id="${movies[i].id}">Delete</button>
+                </div>
             </div>
            `;
     }
@@ -50,6 +59,7 @@ export function HomeEvents() {
     // getMovieId();
     deleteMovie();
     editMovieHandler();
+    // addMovieHandler();
 }
 
 //Do not need another fetch if using props.movies:
@@ -112,13 +122,13 @@ function searchBarHandler(e){
            `;
         });
 
-
         // html += `</div></main>`;
 
         moviesContainer.innerHTML = html;
 
     });
 }
+
 
 
 // Function that does the deleting movie when button pressed:
@@ -138,6 +148,9 @@ function deleteMovie() {
                 // createView("/movies");
             })
         })}}
+
+
+
 //function to send user to EditMovie view when edit button clicked:
 function editMovieHandler() {
     let editBtn = document.querySelectorAll('.edit-btn');
@@ -157,39 +170,39 @@ function editMovieHandler() {
         <button class="form-control" id="edit-btn">Save Changes</button>
      </div>
  `;
-                let movieInput = document.getElementById("movieInput");
-                movieInput.addEventListener("input", () => console.log(movieInput.value));
-                let ratingInput = document.getElementById("ratingInput");
-                ratingInput.addEventListener("input", () => console.log(ratingInput.value));
-                document.getElementById("edit-btn").addEventListener("click", function (event) {
-                    event.preventDefault();
-                    let data = {
-                        title: movieInput.value,
-                        score: ratingInput.value
-                    }
-                    console.log(data);
-                    const request = {
-                        method: "PUT",
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(data)
-                    }
-                    const url = POST_API_BASE_URL + `/api/movies/${editId}`;
-                    fetch(url, request)
-                        .then(response => {
-                            console.log(response.status);
-                            location.reload();
-                            // createView('/');
-                        });
-                        // if (!response.ok){
-                        //     console.log("err");
-                        // }
-                        // else {
-                        // response.json().then(r => console.log(r))
-                    // }}).then(data => {
-                    //     console.log(data)
-                    // }).catch( error => console.log(error))
-                });
-        })}}
+    let movieInput = document.getElementById("movieInput");
+    movieInput.addEventListener("input", () => console.log(movieInput.value));
+    let ratingInput = document.getElementById("ratingInput");
+    ratingInput.addEventListener("input", () => console.log(ratingInput.value));
+    document.getElementById("edit-btn").addEventListener("click", function (event) {
+        event.preventDefault();
+        let data = {
+            title: movieInput.value,
+            score: ratingInput.value
+        }
+        console.log(data);
+        const request = {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }
+        const url = POST_API_BASE_URL + `/api/movies/${editId}`;
+        fetch(url, request)
+            .then(response => {
+                console.log(response.status);
+                location.reload();
+                // createView('/');
+            });
+            // if (!response.ok){
+            //     console.log("err");
+            // }
+            // else {
+            // response.json().then(r => console.log(r))
+        // }}).then(data => {
+        //     console.log(data)
+        // }).catch( error => console.log(error))
+    });
+})}}
 
 
 
